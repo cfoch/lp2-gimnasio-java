@@ -6,6 +6,10 @@
 package gimnasio;
 
 import controlador.AutenticacionControlador;
+import dao.JerarquiaDAO;
+import dao.PersonaDAO;
+import modelo.Jerarquia;
+import modelo.Persona;
 import vista.VentanaAutenticacion;
 import vista.VentanaPrincipal;
 
@@ -21,22 +25,11 @@ public class Gimnasio {
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
         AutenticacionControlador autenticacionControlador;
-        VentanaPrincipal ventanaPrincipal;
         VentanaAutenticacion ventanaLogin;
-
-
         
         ventanaLogin = new VentanaAutenticacion();
         autenticacionControlador = new AutenticacionControlador(ventanaLogin);
         ventanaLogin.agregarControlador(autenticacionControlador);
         ventanaLogin.setVisible(true);
-        
-
-        while (autenticacionControlador.isEsperando()) {
-            System.out.println(" ");
-        }
-        ventanaPrincipal = new VentanaPrincipal();
-        ventanaPrincipal.setVisible(false);
-        ventanaPrincipal.setVisible(true);
     }
 }

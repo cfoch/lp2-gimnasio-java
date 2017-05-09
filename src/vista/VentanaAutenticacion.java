@@ -255,11 +255,26 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
     }
     
     public void mostrarDialogoExito() {
+        Object[] options = { "Entrar" };
         JFrame frame;
-        frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, "Autenticación correcta",
+        int res;
+        
+        frame = new JFrame();        
+        res = JOptionPane.showOptionDialog(frame,
                 "La autenticación ha sido satisfactoria",
-                JOptionPane.INFORMATION_MESSAGE);
+                "Autenticación correcta", JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        
+        if (res == JOptionPane.OK_OPTION) {
+            VentanaPrincipal ventanaPrincipal;
+            // TODO
+            // Falta un controlador para la ventana principal que reciba como
+            // argumento una Persona, asi podemos manejar los permisos de la
+            // persona segun su jerarquia
+            ventanaPrincipal = new VentanaPrincipal();
+            ventanaPrincipal.setVisible(true);
+            this.setVisible(false);
+        }
         controlador.setEsperando(false);
     }
 }
