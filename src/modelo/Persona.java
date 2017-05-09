@@ -16,7 +16,6 @@ import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
  */
 public class Persona extends Observable {
     private Jerarquia jerarquia;
-    private int id; //?????????????
     private int dni;
     private String nombre;
     private String apellidoPaterno;
@@ -27,16 +26,18 @@ public class Persona extends Observable {
     private Date fechaNacimiento;
     private String telefono;
     private String contrasena;
-    //private List<Rol> roles;
     
     public Persona(){
         
     }
 
-    public Persona(int dni, Jerarquia jerar, String nombre) {
+    public Persona(int dni, Jerarquia jerarquia, String nombre,
+            String apellidoPaterno, String apellidoMaterno) {
         this.dni = dni;
-        this.jerarquia = jerar;
+        this.jerarquia = jerarquia;
         this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
     }
     
     public Persona(int dni, Jerarquia jerar, String nombre , String apPat, String apMat, String email, Date fechaNac , String telf, String dist){
@@ -249,21 +250,5 @@ public class Persona extends Observable {
 
     public boolean compararContrasenaEncriptada(String contrasena) {
         return this.contrasena.equals(contrasena);
-    }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-   
+    }   
 }
