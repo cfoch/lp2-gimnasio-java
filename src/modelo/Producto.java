@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import java.math.BigDecimal;
+
 
 /**
  *
@@ -15,16 +15,11 @@ public class Producto {
     private int id;
     private String descripcion;
     private int stock;
-    private int cantidadMaxima;
-    private int cantidadMinima;
-    private BigDecimal precio;
+    private float precio;
 
-    public Producto(String descripcion, int stock, int cantidadMaxima,
-            int cantidadMinima, BigDecimal precio) {
+    public Producto(String descripcion, int stock, float precio) {
         this.descripcion = descripcion;
         this.stock = stock;
-        this.cantidadMaxima = cantidadMaxima;
-        this.cantidadMinima = cantidadMinima;
         this.precio = precio;
     }
 
@@ -64,44 +59,16 @@ public class Producto {
     }
 
     /**
-     * @return the cantidadMaxima
-     */
-    public int getCantidadMaxima() {
-        return cantidadMaxima;
-    }
-
-    /**
-     * @param cantidadMaxima the cantidadMaxima to set
-     */
-    public void setCantidadMaxima(int cantidadMaxima) {
-        this.cantidadMaxima = cantidadMaxima;
-    }
-
-    /**
-     * @return the cantidadMinima
-     */
-    public int getCantidadMinima() {
-        return cantidadMinima;
-    }
-
-    /**
-     * @param cantidadMinima the cantidadMinima to set
-     */
-    public void setCantidadMinima(int cantidadMinima) {
-        this.cantidadMinima = cantidadMinima;
-    }
-
-    /**
      * @return the precio
      */
-    public BigDecimal getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
     /**
      * @param precio the precio to set
      */
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
     

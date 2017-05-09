@@ -52,9 +52,8 @@ public class PersonaDAO implements IDAO<Persona>{
             ps.setString(6, objeto.getEmail());
             ps.setDate(7, (Date) objeto.getFechaNacimiento());
             ps.setString(8, objeto.getTelefono());
-            ps.setInt(9,
-                    objeto.getSede() == null ? objeto.getSede().getId() : null);
-            ps.setString(10, objeto.getContrasena());
+           // ps.setInt(9,objeto.getSede() == null ? objeto.getSede().getId() : null);
+            ps.setString(9, objeto.getContrasena());
 
             if (ps.executeUpdate() > 0) {
                 ids = ps.getGeneratedKeys();
@@ -103,10 +102,9 @@ public class PersonaDAO implements IDAO<Persona>{
             ps.setString(6, objeto.getEmail());
             ps.setDate(7, (Date) objeto.getFechaNacimiento());
             ps.setString(8, objeto.getTelefono());
-            ps.setInt(9,
-                    objeto.getSede() == null ? objeto.getSede().getId() : null);
-            ps.setString(10, objeto.getContrasena());
-            ps.setInt(11, objeto.getId());
+            //ps.setInt(9,objeto.getSede() == null ? objeto.getSede().getId() : null);
+            ps.setString(9, objeto.getContrasena());
+            ps.setInt(10, objeto.getId());
             
             if (ps.executeUpdate() > 0)
                 return true;

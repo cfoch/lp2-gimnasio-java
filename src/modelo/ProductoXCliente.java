@@ -16,6 +16,7 @@ public class ProductoXCliente {
     private Producto producto;
     private Cliente cliente;
     private int cantidadAdquirida;
+    private float montoAcumulado;
 
     public ProductoXCliente(Producto producto, Cliente cliente,
             int cantidadAdquirida) {
@@ -71,6 +72,20 @@ public class ProductoXCliente {
      */
     public void setCantidadAdquirida(int cantidadAdquirida) {
         this.cantidadAdquirida = cantidadAdquirida;
+    }
+    
+    /**
+     * @return the montoAcumulado
+     */
+    public float getMontoAcumulado() {
+        return montoAcumulado;
+    }
+
+    /**
+     * @param montoAcumulado the montoAcumulado to set
+     */
+    public void setMontoAcumulado(float montoAcumulado) {
+        this.montoAcumulado = montoAcumulado;
     }
 
 }

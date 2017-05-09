@@ -9,12 +9,12 @@ package vista.roles;
  *
  * @author pseudocfoch
  */
-public class RegistrarFrame extends javax.swing.JInternalFrame {
+public class VentanaJerarquia extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form RegistrarFrame
      */
-    public RegistrarFrame() {
+    public VentanaJerarquia() {
         initComponents();
     }
 

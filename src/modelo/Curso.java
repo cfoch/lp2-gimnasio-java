@@ -13,12 +13,30 @@ import java.util.Date;
  */
 public class Curso {
     private int id;
+    private int DNIEntrenador;
+    private String nombCurso;
     private String descripcion;
     private int capacidad;
     private int vacantes;
     private Date fechaInicio;
     private Date fechaFin;
     private int disponibilidad;
+    
+    
+    private int duracion; //en minutos
+    
+    
+    public Curso(int id, int dniE, String nombC, String desc, int cap, int vac, Date fecI, Date fecF, int disp){
+        this.id = id;
+        this.DNIEntrenador = dniE;
+        this.nombCurso = nombC;
+        this.descripcion = desc;
+        this.capacidad = cap;
+        this.vacantes = vac;
+        this.fechaInicio = fecI;
+        this.fechaFin = fecF;
+        this.disponibilidad = disp;
+    }
 
     public Curso(int vacantes, Date fechaInicio, Date fechaFin) {
         this.vacantes = vacantes;
@@ -115,6 +133,48 @@ public class Curso {
      */
     public void setDisponibilidad(int disponibilidad) {
         this.disponibilidad = disponibilidad;
+    }
+
+    /**
+     * @return the nombCurso
+     */
+    public String getNombCurso() {
+        return nombCurso;
+    }
+
+    /**
+     * @param nombCurso the nombCurso to set
+     */
+    public void setNombCurso(String nombCurso) {
+        this.nombCurso = nombCurso;
+    }
+
+    /**
+     * @return the DNIEntrenador
+     */
+    public int getDNIEntrenador() {
+        return DNIEntrenador;
+    }
+
+    /**
+     * @param DNIEntrenador the DNIEntrenador to set
+     */
+    public void setDNIEntrenador(int DNIEntrenador) {
+        this.DNIEntrenador = DNIEntrenador;
+    }
+
+    /**
+     * @return the duracion
+     */
+    public int getDuracion() {
+        return duracion;
+    }
+
+    /**
+     * @param duracion the duracion to set
+     */
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
     
     

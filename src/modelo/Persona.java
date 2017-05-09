@@ -15,7 +15,8 @@ import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
  * @author pseudocfoch
  */
 public class Persona extends Observable {
-    private int id;
+    private Jerarquia jerarquia;
+    private int id; //?????????????
     private int dni;
     private String nombre;
     private String apellidoPaterno;
@@ -26,18 +27,43 @@ public class Persona extends Observable {
     private Date fechaNacimiento;
     private String telefono;
     private String contrasena;
-    private Sede sede;
-    private List<Rol> roles;
+    //private List<Rol> roles;
+    
+    public Persona(){
+        
+    }
 
-    public Persona() {
-        this.sede = null;
+    public Persona(int dni, Jerarquia jerar, String nombre) {
+        this.dni = dni;
+        this.jerarquia = jerar;
+        this.nombre = nombre;
+    }
+    
+    public Persona(int dni, Jerarquia jerar, String nombre , String apPat, String apMat, String email, Date fechaNac , String telf, String dist){
+        apellidoPaterno=apPat;
+        apellidoMaterno = apMat;
+        this.email = email;
+        this.distrito = dist;
+        this.dni = dni;
+        this.jerarquia = jerar;
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNac;
+        telefono = telf;
+        
+    }
+    
+     /**
+     * @return the idJerarquia
+     */
+    public Jerarquia getJerarquia() {
+        return jerarquia;
     }
 
     /**
-     * @return the id
+     * @param idJerarquia the idJerarquia to set
      */
-    public int getId() {
-        return id;
+    public void setJerarquia(Jerarquia jerar) {
+        this.jerarquia = jerar;
     }
 
     /**
@@ -166,21 +192,9 @@ public class Persona extends Observable {
         this.telefono = telefono;
     }
 
-    /**
-     * @return the sede
-     */
-    public Sede getSede() {
-        return sede;
-    }
-
-    /**
-     * @param sede the sede to set
-     */
-    public void setSede(Sede sede) {
-        this.sede = sede;
-    }
+   
     
-    public void agregarRol(Rol rol) {
+    /*public void agregarRol(Rol rol) {
         if (this.filtrarRol(rol) == null)
             this.roles.add(rol);
     }
@@ -207,14 +221,7 @@ public class Persona extends Observable {
                 .findAny()
                 .orElse(null);
         return ret;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+    }*/
 
     /**
      * @return the contrasena
@@ -243,4 +250,20 @@ public class Persona extends Observable {
     public boolean compararContrasenaEncriptada(String contrasena) {
         return this.contrasena.equals(contrasena);
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+   
 }
