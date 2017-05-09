@@ -13,28 +13,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Jerarquia;
 import modelo.Permiso;
 
 /**
  *
  * @author pseudocfoch
  */
-public class PermisoDAO implements IDAO<Permiso> {
-    private static final String SQL_INSERT = "INSERT INTO rol (nombre) VALUES (?)";
-    private static final String SQL_DELETE = "DELETE FROM rol WHERE id = ?";
-    private static final String SQL_UPDATE = "UPDATE libros SET nombre = ? WHERE nombre = ?";
-    private static final String SQL_READ = "SELECT * FROM rol WHERE id = ?";
-    private static final String SQL_READ_ALL = "SELECT * FROM rol";
+public class JerarquiaDAO implements IDAO<Jerarquia> {
+    private static final String SQL_INSERT =
+            "INSERT INTO Jerarquia (descripcion, nombreJerarquia) VALUES (?, ?)";
+    private static final String SQL_DELETE =
+            "DELETE FROM Jerarquia WHERE idJerarquia = ?";
+    private static final String SQL_UPDATE = "UPDATE Jerarquia "
+            + "SET descripcion = ? WHERE, nombreJerarquia = ? idJerarquia = ?";
+    private static final String SQL_READ = "SELECT "
+            + "idJerarquia, descripcion, nombreJerarquia "
+            + "FROM Jerarquia WHERE idJerarquia = ?";
+    private static final String SQL_READ_ALL = "SELECT * FROM Jerarquia";
     private static final DBConexion cn = DBConexion.getInstancia();
     
     @Override
-    public boolean create(Permiso objeto) {
+    public boolean create(Jerarquia objeto) {
         try {
             int id;
             ResultSet ids;
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_INSERT);
             ps.setString(1, objeto.getNombre());
+            ps.setString(2, objeto.getDescripcion());
                         
             if (ps.executeUpdate() > 0) {
                 ids = ps.getGeneratedKeys();
@@ -44,7 +51,7 @@ public class PermisoDAO implements IDAO<Permiso> {
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName())
+            Logger.getLogger(JerarquiaDAO.class.getName())
                     .log(Level.SEVERE, null, ex);
         } finally {
             cn.cerrarConexion();
@@ -62,7 +69,7 @@ public class PermisoDAO implements IDAO<Permiso> {
             if (ps.executeUpdate() > 0)
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName())
+            Logger.getLogger(JerarquiaDAO.class.getName())
                     .log(Level.SEVERE, null, ex);
         } finally {
             cn.cerrarConexion();
@@ -71,17 +78,18 @@ public class PermisoDAO implements IDAO<Permiso> {
     }
 
     @Override
-    public boolean update(Permiso objeto) {
+    public boolean update(Jerarquia objeto) {
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_UPDATE);
             ps.setString(1, objeto.getNombre());
-            ps.setInt(2, objeto.getId());
+            ps.setString(2, objeto.getDescripcion());
+            ps.setInt(3, objeto.getId());
 
             if (ps.executeUpdate() > 0)
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName())
+            Logger.getLogger(JerarquiaDAO.class.getName())
                     .log(Level.SEVERE, null, ex);
         } finally {
             cn.cerrarConexion();
@@ -90,8 +98,8 @@ public class PermisoDAO implements IDAO<Permiso> {
     }
 
     @Override
-    public Permiso read(Object id) {
-        Permiso permiso = null;
+    public Jerarquia read(Object id) {
+        Jerarquia jerarquia = null;
         try {
             PreparedStatement ps;
             ResultSet res;
@@ -101,19 +109,19 @@ public class PermisoDAO implements IDAO<Permiso> {
             
             res = ps.executeQuery();
             while (res.next()) {
-                permiso = new Permiso(res.getString(2));
-                permiso.setId(res.getInt(1));
+                jerarquia = new Jerarquia(res.getString(3), res.getString(2));
+                jerarquia.setId(res.getInt(1));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName()).
+            Logger.getLogger(JerarquiaDAO.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-        return permiso;
+        return jerarquia;
     }
 
     @Override
-    public ArrayList<Permiso> readAll() {
-        ArrayList<Permiso> permisos = new ArrayList<>();
+    public ArrayList<Jerarquia> readAll() {
+        ArrayList<Jerarquia> jerarquias = new ArrayList<>();
         try {
             PreparedStatement ps;
             ResultSet res;
@@ -122,15 +130,15 @@ public class PermisoDAO implements IDAO<Permiso> {
             
             res = ps.executeQuery();
             while (res.next()) {
-                Permiso permiso;
-                permiso = new Permiso(res.getString(2));
-                permiso.setId(res.getInt(1));
-                permisos.add(permiso);
+                Jerarquia jerarquia;
+                jerarquia = new Jerarquia(res.getString(2), res.getString(3));
+                jerarquia.setId(res.getInt(1));
+                jerarquias.add(jerarquia);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName()).
+            Logger.getLogger(JerarquiaDAO.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-        return permisos;
+        return jerarquias;
     }
 }
