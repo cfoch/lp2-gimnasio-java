@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Jerarquia;
 import modelo.Persona;
 
 /**
@@ -21,20 +22,21 @@ import modelo.Persona;
  * @author pseudocfoch
  */
 public class PersonaDAO implements IDAO<Persona>{
-    private static final String SQL_INSERT = "INSERT INTO persona "
-            + "(dni, nombre, apellidoPaterno, apellidoMaterno, "
-            + "direccion, email, distrito, fechaNacimiento, telefono, "
-            + "sede_id, contrasena) "
+    private static final String SQL_INSERT = "INSERT INTO Persona "
+            + "(idPersona, idJerarquia, nombre, direccion, "
+            + "apellidoPaterno, apellidoMaterno, email, distrito, "
+            + "fechaNacimiento, telefono, contrasena) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_DELETE =
-            "DELETE FROM persona WHERE id = ?";
-    private static final String SQL_UPDATE = "UPDATE persona "
-            + "SET dni = ?, nombre = ?, apellidoPaterno = ?, "
-            + "apellidoMaterno = ?, direccion = ?, email = ?, distrito = ? "
-            + "fechaNacimiento = ?, telefono = ?, sede_id = ?, contrasena = ? "
-            + "WHERE id = ?";
-    private static final String SQL_READ = "SELECT * FROM persona WHERE id = ?";
-    private static final String SQL_READ_ALL = "SELECT * FROM persona";
+            "DELETE FROM Persona WHERE idPersona = ?";
+    private static final String SQL_UPDATE = "UPDATE Persona "
+            + "SET idJerarquia = ?, nombre = ?, direccion = ?, "
+            + "apellidoPaterno = ?, apellidoMaterno = ?, "
+            + "email = ?, distrito = ?, fechaNacimiento = ?, telefono = ?, "
+            + "contrasena = ? WHERE idPersona = ?";
+    private static final String SQL_READ =
+            "SELECT * FROM Persona WHERE idPersona = ?";
+    private static final String SQL_READ_ALL = "SELECT * FROM Persona";
     private static final DBConexion cn = DBConexion.getInstancia();
 
     @Override
@@ -45,25 +47,20 @@ public class PersonaDAO implements IDAO<Persona>{
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_INSERT);
             ps.setInt(1, objeto.getDni());
-            ps.setString(2, objeto.getNombre());
-            ps.setString(3, objeto.getApellidoPaterno());
-            ps.setString(4, objeto.getApellidoMaterno());
-            ps.setString(5, objeto.getDireccion());
-            ps.setString(6, objeto.getEmail());
-            ps.setDate(7, (Date) objeto.getFechaNacimiento());
-            ps.setString(8, objeto.getTelefono());
-           // ps.setInt(9,objeto.getSede() == null ? objeto.getSede().getId() : null);
-            ps.setString(9, objeto.getContrasena());
-
-            if (ps.executeUpdate() > 0) {
-                ids = ps.getGeneratedKeys();
-                ids.next();
-                id = ids.getInt(1);
-                objeto.setId(id);
+            ps.setInt(2, objeto.getJerarquia().getId());
+            ps.setString(3, objeto.getNombre());
+            ps.setString(4, objeto.getDireccion());
+            ps.setString(5, objeto.getApellidoPaterno());
+            ps.setString(6, objeto.getApellidoMaterno());
+            ps.setString(7, objeto.getEmail());
+            ps.setString(8, objeto.getDistrito());
+            ps.setDate(9, (Date) objeto.getFechaNacimiento());
+            ps.setString(10, objeto.getTelefono());
+            ps.setString(11, objeto.getContrasena());
+            if (ps.executeUpdate() > 0)
                 return true;
-            }
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName())
+            Logger.getLogger(JerarquiaDAO.class.getName())
                     .log(Level.SEVERE, null, ex);
         } finally {
             cn.cerrarConexion();
@@ -72,16 +69,16 @@ public class PersonaDAO implements IDAO<Persona>{
     }
 
     @Override
-    public boolean delete(Object id) {
+    public boolean delete(Object dni) {
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_DELETE);
-            ps.setInt(1, (int) id);
+            ps.setInt(1, (int) dni);
             
             if (ps.executeUpdate() > 0)
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName())
+            Logger.getLogger(JerarquiaDAO.class.getName())
                     .log(Level.SEVERE, null, ex);
         } finally {
             cn.cerrarConexion();
@@ -94,22 +91,24 @@ public class PersonaDAO implements IDAO<Persona>{
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_UPDATE);
-            ps.setInt(1, objeto.getDni());
+            ps.setInt(1, objeto.getJerarquia().getId());
             ps.setString(2, objeto.getNombre());
-            ps.setString(3, objeto.getApellidoPaterno());
-            ps.setString(4, objeto.getApellidoMaterno());
-            ps.setString(5, objeto.getDireccion());
+            ps.setString(3, objeto.getDireccion());
+            ps.setString(4, objeto.getApellidoPaterno());
+            ps.setString(5, objeto.getApellidoMaterno());
             ps.setString(6, objeto.getEmail());
-            ps.setDate(7, (Date) objeto.getFechaNacimiento());
-            ps.setString(8, objeto.getTelefono());
-            //ps.setInt(9,objeto.getSede() == null ? objeto.getSede().getId() : null);
-            ps.setString(9, objeto.getContrasena());
-            ps.setInt(10, objeto.getId());
+            ps.setString(7, objeto.getDistrito());
+            ps.setDate(8, (Date) objeto.getFechaNacimiento());
+            ps.setString(9, objeto.getTelefono());
+            ps.setString(10, objeto.getContrasena());
+            
+            ps.setInt(11, objeto.getDni());
+
             
             if (ps.executeUpdate() > 0)
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName())
+            Logger.getLogger(JerarquiaDAO.class.getName())
                     .log(Level.SEVERE, null, ex);
         } finally {
             cn.cerrarConexion();
@@ -129,9 +128,15 @@ public class PersonaDAO implements IDAO<Persona>{
             
             res = ps.executeQuery();
             while (res.next()) {
+                JerarquiaDAO jerarquiaDAO;
+                Jerarquia jerarquia;
+                
+                jerarquiaDAO = new JerarquiaDAO();
+                jerarquia = jerarquiaDAO.read(res.getInt(2));
+                
                 persona = new Persona();
-                persona.setId(res.getInt(1));
-                persona.setDni(res.getInt(2));
+                persona.setDni(res.getInt(1));
+                persona.setJerarquia(jerarquia);
                 persona.setNombre(res.getString(3));
                 persona.setApellidoPaterno(res.getString(4));
                 persona.setApellidoMaterno(res.getString(5));
@@ -140,12 +145,10 @@ public class PersonaDAO implements IDAO<Persona>{
                 persona.setDistrito(res.getString(8));
                 persona.setFechaNacimiento(res.getDate(9));
                 persona.setTelefono(res.getString(10));
-                // TODO
-                // persona.setSede(sede);
-                persona.setContrasenaEncriptada(res.getString(12));
+                persona.setContrasenaEncriptada(res.getString(11));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName()).
+            Logger.getLogger(JerarquiaDAO.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
         return persona;
@@ -164,24 +167,31 @@ public class PersonaDAO implements IDAO<Persona>{
             res = ps.executeQuery();
             while (res.next()) {
                 Persona persona;
+                JerarquiaDAO jerarquiaDAO;
+                Jerarquia jerarquia;
+                
+                // FIXME
+                // No estoy seguro si aca puede haber un conflicto entre
+                // los hilos de la conexion.
+                jerarquiaDAO = new JerarquiaDAO();
+                jerarquia = jerarquiaDAO.read(res.getInt(2));
+                
                 persona = new Persona();
-                persona.setId(res.getInt(1));
-                persona.setDni(res.getInt(2));
+                persona.setDni(res.getInt(1));
+                persona.setJerarquia(jerarquia);
                 persona.setNombre(res.getString(3));
-                persona.setApellidoPaterno(res.getString(4));
-                persona.setApellidoMaterno(res.getString(5));
-                persona.setDireccion(res.getString(6));
+                persona.setDireccion(res.getString(4));
+                persona.setApellidoPaterno(res.getString(5));
+                persona.setApellidoMaterno(res.getString(6));
                 persona.setEmail(res.getString(7));
                 persona.setDistrito(res.getString(8));
                 persona.setFechaNacimiento(res.getDate(9));
                 persona.setTelefono(res.getString(10));
-                // TODO
-                // persona.setSede(sede);
-                persona.setContrasenaEncriptada(res.getString(12));
+                persona.setContrasenaEncriptada(res.getString(11));
                 personas.add(persona);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PermisoDAO.class.getName()).
+            Logger.getLogger(JerarquiaDAO.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
         return personas;
