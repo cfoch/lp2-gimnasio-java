@@ -5,7 +5,8 @@
  */
 package dao;
 
-import dao.interfaces.IDAO;
+import dao.interfaces.IJerarquiaDAO;
+import dao.utils.IDAO;
 import db.DBConexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import modelo.Permiso;
  *
  * @author pseudocfoch
  */
-public class JerarquiaDAO implements IDAO<Jerarquia> {
+public class JerarquiaDAO implements IJerarquiaDAO {
     private static final String SQL_INSERT =
             "INSERT INTO Jerarquia (descripcion, nombreJerarquia) VALUES (?, ?)";
     private static final String SQL_DELETE =
@@ -60,11 +61,11 @@ public class JerarquiaDAO implements IDAO<Jerarquia> {
     }
 
     @Override
-    public boolean delete(Object id) {
+    public boolean delete(Integer id) {
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_DELETE);
-            ps.setInt(1, (int) id);
+            ps.setInt(1, id);
             
             if (ps.executeUpdate() > 0)
                 return true;
@@ -98,14 +99,14 @@ public class JerarquiaDAO implements IDAO<Jerarquia> {
     }
 
     @Override
-    public Jerarquia read(Object id) {
+    public Jerarquia read(Integer id) {
         Jerarquia jerarquia = null;
         try {
             PreparedStatement ps;
             ResultSet res;
             
             ps = cn.getConexion().prepareStatement(SQL_READ);
-            ps.setInt(1, (int) id);
+            ps.setInt(1, id);
             
             res = ps.executeQuery();
             while (res.next()) {

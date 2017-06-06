@@ -8,13 +8,16 @@ package modelo;
 import java.util.Date;
 import java.util.List;
 import java.util.Observable;
+import modelo.utils.IModel;
+import modelo.utils.PK;
+import modelo.utils.NumericPK;
 import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
 
 /**
  *
  * @author pseudocfoch
  */
-public class Persona extends Observable {
+public class Persona extends Observable implements IModel {
     private Jerarquia jerarquia;
     private int dni;
     private String nombre;
@@ -251,4 +254,9 @@ public class Persona extends Observable {
     public boolean compararContrasenaEncriptada(String contrasena) {
         return this.contrasena.equals(contrasena);
     }   
+
+    @Override
+    public PK getPK() {
+        return new NumericPK(this.dni);
+    }
 }

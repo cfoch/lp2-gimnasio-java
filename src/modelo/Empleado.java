@@ -15,24 +15,30 @@ import java.util.Date;
 public class Empleado extends Persona {
     private String Cargo;
     private float Sueldo;
+
+
     private String Area;
     private Date horaInicio;
     private Date horaFin;
     private String tipoHorario;
     private String cuentaBancaria;
 
-    
-    public Empleado(String _cargo, float _sueldo, String _area, Date _horaInicio, Date _horaFin, String _tipoHorario, 
-        String _cuentaBancaria, int dni, Jerarquia jerarquia, String nombre, String apPat, String apMat, String email, Date fechaNac, String telf, String dist) {
-        super(dni,  jerarquia,  nombre ,  apPat,  apMat,  email,  fechaNac ,  telf,  dist);
-        this.Cargo = _cargo;
-        this.Sueldo = _sueldo;
-        this.Area = _area;
-        this.horaInicio = _horaInicio;
-        this.horaFin = _horaFin;
-        this.tipoHorario = _tipoHorario;
-        this.cuentaBancaria = _cuentaBancaria;
+    public Empleado(int dni, Jerarquia jerar, String nombre, String apPat, String apMat, String email,
+            Date fechaNac, String telf, String dist, String Cargo, float Sueldo, String Area, Date horaInicio,
+            Date horaFin, String tipoHorario, String cuentaBancaria) {
+        super(dni, jerar, nombre, apPat, apMat, email, fechaNac, telf, dist);
+        this.Cargo = Cargo;
+        this.Sueldo = Sueldo;
+        this.Area = Area;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.tipoHorario = tipoHorario;
+        this.cuentaBancaria = cuentaBancaria;
     }
+    
+
+
+
     
     /**
      * @return the Cargo

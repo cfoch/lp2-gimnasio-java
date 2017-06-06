@@ -5,17 +5,14 @@
  */
 package dao.interfaces;
 
-import java.util.ArrayList;
+import dao.utils.IDAO;
+import modelo.Rutina;
+import modelo.pk.RutinaPK;
 
 /**
  *
  * @author pseudocfoch
- * @param <T>
  */
-public interface IDAO <T> {
-    public boolean create(T objeto);
-    public boolean delete(Object id);
-    public boolean update(T objeto);
-    public T read(Object id);
-    public ArrayList<T> readAll();
+public interface IRutinaDAO extends IDAO<Rutina, RutinaPK>{
+    
 }

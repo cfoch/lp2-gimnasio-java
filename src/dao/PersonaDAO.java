@@ -5,7 +5,7 @@
  */
 package dao;
 
-import dao.interfaces.IDAO;
+import dao.utils.IDAO;
 import db.DBConexion;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -16,12 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Jerarquia;
 import modelo.Persona;
+import dao.interfaces.IPersonaDAO;
 
 /**
  *
  * @author pseudocfoch
  */
-public class PersonaDAO implements IDAO<Persona>{
+public class PersonaDAO implements IPersonaDAO {
     private static final String SQL_INSERT = "INSERT INTO Persona "
             + "(idPersona, idJerarquia, nombre, direccion, "
             + "apellidoPaterno, apellidoMaterno, email, distrito, "
@@ -69,11 +70,11 @@ public class PersonaDAO implements IDAO<Persona>{
     }
 
     @Override
-    public boolean delete(Object dni) {
+    public boolean delete(Integer dni) {
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_DELETE);
-            ps.setInt(1, (int) dni);
+            ps.setInt(1, dni);
             
             if (ps.executeUpdate() > 0)
                 return true;
@@ -117,14 +118,14 @@ public class PersonaDAO implements IDAO<Persona>{
     }
 
     @Override
-    public Persona read(Object id) {
+    public Persona read(Integer id) {
         Persona persona = null;
         try {
             PreparedStatement ps;
             ResultSet res;
             
             ps = cn.getConexion().prepareStatement(SQL_READ);
-            ps.setInt(1, (int) id);
+            ps.setInt(1, id);
             
             res = ps.executeQuery();
             while (res.next()) {
