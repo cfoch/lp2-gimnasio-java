@@ -13,73 +13,76 @@ import java.util.Date;
  * @author pseudocfoch
  */
 public class Empleado extends Persona {
-    private String Cargo;
-    private float Sueldo;
-
-
-    private String Area;
+    private Turno turno;
+    private String cargo;
+    private float sueldo;
+    private String area;
     private Date horaInicio;
     private Date horaFin;
     private String tipoHorario;
     private String cuentaBancaria;
+    private String estadoLaboral;
 
-    public Empleado(int dni, Jerarquia jerar, String nombre, String apPat, String apMat, String email,
-            Date fechaNac, String telf, String dist, String Cargo, float Sueldo, String Area, Date horaInicio,
-            Date horaFin, String tipoHorario, String cuentaBancaria) {
-        super(dni, jerar, nombre, apPat, apMat, email, fechaNac, telf, dist);
-        this.Cargo = Cargo;
-        this.Sueldo = Sueldo;
-        this.Area = Area;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
-        this.tipoHorario = tipoHorario;
-        this.cuentaBancaria = cuentaBancaria;
+    public Empleado(){
+        
     }
     
 
+    /**
+     * @return the estadoLaboral
+     */
+    public String getEstadoLaboral() {
+        return estadoLaboral;
+    }
 
+    /**
+     * @param estadoLaboral the estadoLaboral to set
+     */
+    public void setEstadoLaboral(String estadoLaboral) {
+        this.estadoLaboral = estadoLaboral;
+    }
 
     
     /**
-     * @return the Cargo
+     * @return the cargo
      */
-    public String getCargo() {
-        return Cargo;
+    public String getcargo() {
+        return cargo;
     }
 
     /**
-     * @param Cargo the Cargo to set
+     * @param cargo the cargo to set
      */
-    public void setCargo(String Cargo) {
-        this.Cargo = Cargo;
+    public void setcargo(String cargo) {
+        this.cargo = cargo;
     }
 
     /**
-     * @return the Sueldo
+     * @return the sueldo
      */
     public float getSueldo() {
-        return Sueldo;
+        return sueldo;
     }
 
     /**
-     * @param Sueldo the Sueldo to set
+     * @param sueldo the sueldo to set
      */
-    public void setSueldo(float Sueldo) {
-        this.Sueldo = Sueldo;
+    public void setSueldo(float sueldo) {
+        this.sueldo = sueldo;
     }
 
     /**
-     * @return the Area
+     * @return the area
      */
     public String getArea() {
-        return Area;
+        return area;
     }
 
     /**
-     * @param Area the Area to set
+     * @param area the area to set
      */
-    public void setArea(String Area) {
-        this.Area = Area;
+    public void setArea(String area) {
+        this.area = area;
     }
 
     /**
@@ -136,6 +139,20 @@ public class Empleado extends Persona {
      */
     public void setCuentaBancaria(String cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
+    }
+
+    /**
+     * @return the turno
+     */
+    public Turno getTurno() {
+        return turno;
+    }
+
+    /**
+     * @param turno the turno to set
+     */
+    public void setTurno(Turno turno) {
+        this.turno = turno;
     }
     
     

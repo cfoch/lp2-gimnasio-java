@@ -42,8 +42,24 @@ public class Persona extends Observable implements IModel {
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
+
+    public Persona(Jerarquia jerar, String nombre , String apPat,
+                   String apMat, String email, Date fechaNac , String telf,
+                   String dist) {
+        apellidoPaterno=apPat;
+        apellidoMaterno = apMat;
+        this.email = email;
+        this.distrito = dist;
+        this.jerarquia = jerar;
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNac;
+        telefono = telf;
+        
+    }
     
-    public Persona(int dni, Jerarquia jerar, String nombre , String apPat, String apMat, String email, Date fechaNac , String telf, String dist){
+    public Persona(int dni, Jerarquia jerar, String nombre , String apPat,
+                   String apMat, String email, Date fechaNac , String telf,
+                   String dist) {
         apellidoPaterno=apPat;
         apellidoMaterno = apMat;
         this.email = email;

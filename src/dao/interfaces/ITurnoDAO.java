@@ -6,13 +6,12 @@
 package dao.interfaces;
 
 import dao.utils.IDAO;
-import modelo.Empleado;
-import modelo.Entrenador;
+import modelo.Turno;
 
 /**
  *
  * @author pseudocfoch
  */
-public interface IEntrenadorDAO extends IDAO<Entrenador, Integer> {
+public interface ITurnoDAO extends IDAO<Turno, Integer>{
     
 }

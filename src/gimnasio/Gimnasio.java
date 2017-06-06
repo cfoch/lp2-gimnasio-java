@@ -6,8 +6,10 @@
 package gimnasio;
 
 import controlador.AutenticacionControlador;
+import dao.EntrenadorDAO;
 import dao.JerarquiaDAO;
 import dao.PersonaDAO;
+import modelo.Entrenador;
 import modelo.Jerarquia;
 import modelo.Persona;
 import vista.VentanaAutenticacion;
