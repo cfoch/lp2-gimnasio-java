@@ -18,7 +18,7 @@ import vista.VentanaAutenticacion;
  */
 public class AutenticacionControlador implements ActionListener {
     private VentanaAutenticacion vista;
-    Persona persona;
+    private Persona persona;
     private boolean esperando;
     
     public AutenticacionControlador(VentanaAutenticacion ventana) {
@@ -38,13 +38,11 @@ public class AutenticacionControlador implements ActionListener {
         cmd = e.getActionCommand();
         if (cmd.equals(VentanaAutenticacion.Action.ENTRAR_CLICKED)) {
             PersonaDAO personaDAO;
-            Persona persona = null;
+            setPersona(null);
             int login;
             final int loginF;
             String contrasena;
             
-            // TODO
-            // Lo veo poco elegante
             try {
                 login = Integer.parseInt(getVista().getLogin());
             } catch (NumberFormatException exception) {
@@ -55,17 +53,17 @@ public class AutenticacionControlador implements ActionListener {
             personaDAO = new PersonaDAO();
 
             loginF = login;
-            persona = personaDAO.read(login);
-            if (persona == null) {
+            setPersona(personaDAO.read(login));
+            if (getPersona() == null) {
                 ArrayList<Persona> personas;
                 personas = personaDAO.readAll();
-                persona = personas.stream()
+                setPersona(personas.stream()
                         .filter(p -> p.getDni() == loginF)
                         .findAny()
-                        .orElse(null);
+                        .orElse(null));
             }
 
-            if (persona != null && persona.compararContrasena(contrasena)) {
+            if (getPersona() != null && getPersona().compararContrasena(contrasena)) {
                 this.vista.mostrarDialogoExito();
                 this.getVista().setVisible(false);
             } else {
@@ -100,5 +98,19 @@ public class AutenticacionControlador implements ActionListener {
      */
     public void setVista(VentanaAutenticacion vista) {
         this.vista = vista;
+    }
+    
+    /**
+     * @return the persona
+     */
+    public Persona getPersona() {
+        return persona;
+    }
+
+    /**
+     * @param persona the persona to set
+     */
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 }

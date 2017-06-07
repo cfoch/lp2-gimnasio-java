@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.AutenticacionControlador;
+import controlador.PrincipalControlador;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -251,6 +252,8 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
         frame = new JFrame();
         JOptionPane.showMessageDialog(frame, "Datos invalidos",
                 "Error de autenticación", JOptionPane.ERROR_MESSAGE);
+        // TODO
+        // Creo que esto ya no es necesario.
         controlador.setEsperando(false);        
     }
     
@@ -271,10 +274,16 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
             // Falta un controlador para la ventana principal que reciba como
             // argumento una Persona, asi podemos manejar los permisos de la
             // persona segun su jerarquia
+            PrincipalControlador principalControlador;
             ventanaPrincipal = new VentanaPrincipal();
+            principalControlador = new PrincipalControlador(
+                    this.controlador.getPersona(), ventanaPrincipal);
+            ventanaPrincipal.agregarControlador(principalControlador);
             ventanaPrincipal.setVisible(true);
             this.setVisible(false);
         }
+        // TODO
+        // Creo que esto ya no es necesario.
         controlador.setEsperando(false);
     }
 }
