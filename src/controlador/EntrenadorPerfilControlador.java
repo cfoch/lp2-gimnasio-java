@@ -9,31 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelo.Entrenador;
 import vista.VentanaEntrenador;
+import vista.Ventrenador_perfil;
 
 /**
  *
  * @author pseudocfoch
  */
-public class EntrenadorControlador implements ActionListener {
-    private VentanaEntrenador vista;
+public class EntrenadorPerfilControlador  implements ActionListener  {
     private Entrenador entrenador;
-    
-    public EntrenadorControlador(VentanaEntrenador vista, Entrenador entrenador) {
-        this.vista = vista;
+    private Ventrenador_perfil vista;
+
+    public EntrenadorPerfilControlador(Entrenador entrenador, Ventrenador_perfil vista) {
         this.entrenador = entrenador;
-    }
-
-    /**
-     * @return the vista
-     */
-    public VentanaEntrenador getVista() {
-        return vista;
-    }
-
-    /**
-     * @param vista the vista to set
-     */
-    public void setVista(VentanaEntrenador vista) {
         this.vista = vista;
     }
 
@@ -45,21 +32,15 @@ public class EntrenadorControlador implements ActionListener {
     }
 
     /**
-     * @param entrenador the entrenador to set
+     * @return the vista
      */
-    public void setEntrenador(Entrenador entrenador) {
-        this.entrenador = entrenador;
+    public Ventrenador_perfil getVista() {
+        return vista;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public EntrenadorControlador(Entrenador entrenador, VentanaEntrenador vista) {
-        this.vista = vista;
-        this.entrenador = entrenador;
-    }
-
     
 }

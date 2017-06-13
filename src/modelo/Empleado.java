@@ -17,8 +17,8 @@ public class Empleado extends Persona {
     private String cargo;
     private float sueldo;
     private String area;
-    private Date horaInicio;
-    private Date horaFin;
+    private Integer horaInicio;
+    private Integer horaFin;
     private String tipoHorario;
     private String cuentaBancaria;
     private String estadoLaboral;
@@ -60,7 +60,7 @@ public class Empleado extends Persona {
     /**
      * @return the sueldo
      */
-    public float getSueldo() {
+    public Float getSueldo() {
         return sueldo;
     }
 
@@ -88,28 +88,28 @@ public class Empleado extends Persona {
     /**
      * @return the horaInicio
      */
-    public Date getHoraInicio() {
+    public Integer getHoraInicio() {
         return horaInicio;
     }
 
     /**
      * @param horaInicio the horaInicio to set
      */
-    public void setHoraInicio(Date horaInicio) {
+    public void setHoraInicio(Integer horaInicio) {
         this.horaInicio = horaInicio;
     }
 
     /**
      * @return the horaFin
      */
-    public Date getHoraFin() {
+    public Integer getHoraFin() {
         return horaFin;
     }
 
     /**
      * @param horaFin the horaFin to set
      */
-    public void setHoraFin(Date horaFin) {
+    public void setHoraFin(Integer horaFin) {
         this.horaFin = horaFin;
     }
 

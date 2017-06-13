@@ -5,10 +5,12 @@
  */
 package controlador;
 
+import dao.EntrenadorDAO;
 import dao.PersonaDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import modelo.Entrenador;
 import modelo.Persona;
 import vista.VentanaAutenticacion;
 
@@ -18,17 +20,17 @@ import vista.VentanaAutenticacion;
  */
 public class AutenticacionControlador implements ActionListener {
     private VentanaAutenticacion vista;
-    private Persona persona;
+    private Entrenador entrenador;
     private boolean esperando;
     
     public AutenticacionControlador(VentanaAutenticacion ventana) {
-        this.persona = null;
+        this.entrenador = null;
         this.esperando = true;
         this.vista = ventana;
     }
 
     public AutenticacionControlador() {
-        this.persona = null;
+        this.entrenador = null;
         this.esperando = true;
     }
 
@@ -37,38 +39,25 @@ public class AutenticacionControlador implements ActionListener {
         String cmd;
         cmd = e.getActionCommand();
         if (cmd.equals(VentanaAutenticacion.Action.ENTRAR_CLICKED)) {
-            PersonaDAO personaDAO;
-            setPersona(null);
+            EntrenadorDAO entrenadorDAO;
             int login;
-            final int loginF;
+            boolean autenticacionValida;
             String contrasena;
+
+            entrenadorDAO = new EntrenadorDAO();
             
-            try {
-                login = Integer.parseInt(getVista().getLogin());
-            } catch (NumberFormatException exception) {
-                login = -1;
-            }
+            login = getVista().getLogin();
             contrasena = getVista().getConstrasena();
+            entrenador = entrenadorDAO.read(login);
+            
+            autenticacionValida = getEntrenador() != null &&
+                    getEntrenador().compararContrasena(contrasena);
 
-            personaDAO = new PersonaDAO();
-
-            loginF = login;
-            setPersona(personaDAO.read(login));
-            if (getPersona() == null) {
-                ArrayList<Persona> personas;
-                personas = personaDAO.readAll();
-                setPersona(personas.stream()
-                        .filter(p -> p.getDni() == loginF)
-                        .findAny()
-                        .orElse(null));
-            }
-
-            if (getPersona() != null && getPersona().compararContrasena(contrasena)) {
+            if (autenticacionValida) {
                 this.vista.mostrarDialogoExito();
                 this.getVista().setVisible(false);
-            } else {
+            } else
                 this.vista.mostrarDialogoError();
-            }
         }
     }
 
@@ -99,18 +88,11 @@ public class AutenticacionControlador implements ActionListener {
     public void setVista(VentanaAutenticacion vista) {
         this.vista = vista;
     }
-    
-    /**
-     * @return the persona
-     */
-    public Persona getPersona() {
-        return persona;
-    }
 
     /**
-     * @param persona the persona to set
+     * @return the entrenador
      */
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public Entrenador getEntrenador() {
+        return entrenador;
     }
 }

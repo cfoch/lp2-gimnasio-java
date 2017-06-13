@@ -38,10 +38,11 @@ public class PersonaDAO implements IPersonaDAO {
     private static final String SQL_READ =
             "SELECT * FROM Persona WHERE idPersona = ?";
     private static final String SQL_READ_ALL = "SELECT * FROM Persona";
-    private static final DBConexion cn = DBConexion.getInstancia();
 
     @Override
     public boolean create(Persona objeto) {
+        DBConexion cn;
+        cn = DBConexion.getInstancia();
         try {
             int id;
             ResultSet ids;
@@ -71,6 +72,8 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public boolean delete(Integer dni) {
+        DBConexion cn;
+        cn = DBConexion.getInstancia();
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_DELETE);
@@ -89,6 +92,8 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public boolean update(Persona objeto) {
+        DBConexion cn;
+        cn = DBConexion.getInstancia();
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_UPDATE);
@@ -104,7 +109,6 @@ public class PersonaDAO implements IPersonaDAO {
             ps.setString(10, objeto.getContrasena());
             
             ps.setInt(11, objeto.getDni());
-
             
             if (ps.executeUpdate() > 0)
                 return true;
@@ -119,6 +123,8 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public Persona read(Integer id) {
+        DBConexion cn;
+        cn = DBConexion.getInstancia();
         Persona persona = null;
         try {
             PreparedStatement ps;
@@ -157,6 +163,8 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public ArrayList<Persona> readAll() {
+        DBConexion cn;
+        cn = DBConexion.getInstancia();
         ArrayList<Persona> personas;
         personas = new ArrayList<>();
         try {

@@ -6,12 +6,14 @@
 package vista;
 
 import controlador.AutenticacionControlador;
+import controlador.EntrenadorControlador;
 import controlador.PrincipalControlador;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import vista.interfaces.IVista;
-
+import java.awt.Image;
+import java.awt.Toolkit;
 /**
  *
  * @author pseudocfoch
@@ -26,7 +28,13 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
      */
     public VentanaAutenticacion() {
         initComponents();
+        this.setLocationRelativeTo(null);
         controlador = null;
+    }
+    
+    public Image getIconImage(){
+	Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icon.png"));
+        return retValue;
     }
 
     /**
@@ -47,11 +55,16 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
         jSeparator2 = new javax.swing.JSeparator();
         contrasenaPasswordField = new javax.swing.JPasswordField();
         entrarButton = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(14, 56, 103));
+        setIconImage(getIconImage());
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(14, 56, 103));
+        jPanel1.setBackground(new java.awt.Color(94, 88, 78));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(431, 450));
         jPanel1.setMinimumSize(new java.awt.Dimension(431, 450));
@@ -60,18 +73,22 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
         loginLabel.setForeground(new java.awt.Color(255, 255, 255));
         loginLabel.setText("DNI o ID:");
 
-        loginTextField.setBackground(new java.awt.Color(14, 56, 103));
+        loginTextField.setBackground(new java.awt.Color(94, 88, 78));
         loginTextField.setFont(new java.awt.Font("Source Sans Pro Light", 0, 14)); // NOI18N
         loginTextField.setForeground(new java.awt.Color(255, 255, 255));
         loginTextField.setText("Ingresa tu DNI o ID de usuario");
         loginTextField.setBorder(null);
+        loginTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginTextFieldMouseClicked(evt);
+            }
+        });
         loginTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginTextFieldActionPerformed(evt);
             }
         });
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Source Code Pro Light", 1, 36)); // NOI18N
@@ -82,22 +99,38 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
         contrasenaLabel.setForeground(new java.awt.Color(255, 255, 255));
         contrasenaLabel.setText("Contraseña:");
 
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        contrasenaPasswordField.setBackground(new java.awt.Color(14, 56, 103));
+        contrasenaPasswordField.setBackground(new java.awt.Color(94, 88, 78));
         contrasenaPasswordField.setFont(new java.awt.Font("Source Code Pro ExtraLight", 0, 14)); // NOI18N
         contrasenaPasswordField.setForeground(new java.awt.Color(255, 255, 255));
         contrasenaPasswordField.setText("jPasswordField1");
         contrasenaPasswordField.setBorder(null);
+        contrasenaPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contrasenaPasswordFieldMouseClicked(evt);
+            }
+        });
 
-        entrarButton.setBackground(new java.awt.Color(0, 153, 102));
-        entrarButton.setFont(new java.awt.Font("Source Sans Pro Light", 1, 18)); // NOI18N
-        entrarButton.setForeground(new java.awt.Color(0, 0, 0));
+        entrarButton.setBackground(new java.awt.Color(156, 148, 137));
+        entrarButton.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        entrarButton.setForeground(new java.awt.Color(94, 88, 78));
         entrarButton.setText("Entrar");
         entrarButton.setBorder(null);
         entrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entrarButtonActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(156, 148, 137));
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(94, 88, 78));
+        btnSalir.setText("X");
+        btnSalir.setBorderPainted(false);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -107,38 +140,42 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(img)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(entrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(contrasenaLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(loginLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel4)))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(entrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(contrasenaPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(contrasenaLabel)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loginLabel)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(contrasenaPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalir)
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addComponent(img)
+                .addGap(20, 20, 20)
+                .addComponent(btnSalir)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(loginLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -147,31 +184,12 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
                 .addComponent(contrasenaPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addComponent(entrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 431, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 435));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,6 +201,18 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_entrarButtonActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void loginTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginTextFieldMouseClicked
+        loginTextField.setText("");
+    }//GEN-LAST:event_loginTextFieldMouseClicked
+
+    private void contrasenaPasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contrasenaPasswordFieldMouseClicked
+        contrasenaPasswordField.setText("");
+    }//GEN-LAST:event_contrasenaPasswordFieldMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,9 +251,11 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel contrasenaLabel;
     private javax.swing.JPasswordField contrasenaPasswordField;
     private javax.swing.JButton entrarButton;
+    private javax.swing.JLabel img;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
@@ -239,8 +271,14 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
         this.entrarButton.setActionCommand(Action.ENTRAR_CLICKED);
     }
     
-    public String getLogin() {
-        return this.loginTextField.getText();
+    public Integer getLogin() {
+        Integer login;
+        try {
+            login = Integer.parseInt(this.loginTextField.getText());
+        } catch (NumberFormatException exception) {
+            login = -1;
+        }
+        return login;
     }
     
     public String getConstrasena() {
@@ -269,16 +307,19 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         
         if (res == JOptionPane.OK_OPTION) {
-            VentanaPrincipal ventanaPrincipal;
+            EntrenadorControlador entrenadorControlador;
+ 
+            //VentanaPrincipal ventanaPrincipal;
+            VentanaEntrenador ventanaPrincipal;
             // TODO
             // Falta un controlador para la ventana principal que reciba como
             // argumento una Persona, asi podemos manejar los permisos de la
             // persona segun su jerarquia
             PrincipalControlador principalControlador;
-            ventanaPrincipal = new VentanaPrincipal();
-            principalControlador = new PrincipalControlador(
-                    this.controlador.getPersona(), ventanaPrincipal);
-            ventanaPrincipal.agregarControlador(principalControlador);
+            ventanaPrincipal = new VentanaEntrenador();
+            entrenadorControlador = new EntrenadorControlador(ventanaPrincipal,
+                    this.controlador.getEntrenador());
+            ventanaPrincipal.agregarControlador(entrenadorControlador);
             ventanaPrincipal.setVisible(true);
             this.setVisible(false);
         }

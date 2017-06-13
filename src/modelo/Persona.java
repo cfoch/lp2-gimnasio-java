@@ -89,7 +89,7 @@ public class Persona extends Observable implements IModel {
     /**
      * @return the dni
      */
-    public int getDni() {
+    public Integer getDni() {
         return dni;
     }
 
@@ -99,6 +99,11 @@ public class Persona extends Observable implements IModel {
     public void setDni(int dni) {
         this.dni = dni;
     }
+    
+    public String getNombreAbreviado() {
+        return this.getNombre().substring(0, 1) + ". " +
+                this.getApellidoPaterno();
+    }
 
     /**
      * @return the nombre
@@ -106,7 +111,7 @@ public class Persona extends Observable implements IModel {
     public String getNombre() {
         return nombre;
     }
-
+    
     /**
      * @param nombre the nombre to set
      */
