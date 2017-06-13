@@ -31,26 +31,26 @@ public class EntrenadorDAO implements IEntrenadorDAO {
             + "apellidoPaterno, apellidoMaterno, email, distrito, "
             + "fechaNacimiento, telefono, contrasena, idTurno, cargo, sueldo, "
             + "area, horaInicio, horaFin, cuentaBancaria, estadoLaboral, "
-            + "especialidad, horario, cantidadMaximaClientes, "
+            + "especialidad, cantidadMaximaClientes, "
             + "cantidadClientesDisponibles "
-            + "FROM persona "
-            + "LEFT JOIN empleado "
-            + "ON persona.idPersona = empleado.idEmpleado "
-            + "LEFT JOIN entrenador  "
-            + "ON entrenador.idEntrenador = persona.idPersona "
-            + "WHERE entrenador.idEntrenador = ?;";
+            + "FROM Persona "
+            + "INNER JOIN Empleado "
+            + "ON Persona.idPersona = Empleado.idEmpleado "
+            + "INNER JOIN Entrenador  "
+            + "ON Entrenador.idEntrenador = Persona.idPersona "
+            + "WHERE Entrenador.idEntrenador = ?;";
     private static final String SQL_READ_ALL =
             "SELECT idPersona, idJerarquia, nombre, direccion, "
             + "apellidoPaterno, apellidoMaterno, email, distrito, "
             + "fechaNacimiento, telefono, contrasena, idTurno, cargo, sueldo, "
             + "area, horaInicio, horaFin, cuentaBancaria, estadoLaboral, "
-            + "especialidad, horario, cantidadMaximaClientes, "
+            + "especialidad, cantidadMaximaClientes, "
             + "cantidadClientesDisponibles "
-            + "FROM persona "
-            + "LEFT JOIN empleado "
-            + "ON persona.idPersona = empleado.idEmpleado "
-            + "LEFT JOIN entrenador  "
-            + "ON entrenador.idEntrenador = persona.idPersona;";
+            + "FROM Persona "
+            + "INNER JOIN Empleado "
+            + "ON Persona.idPersona = Empleado.idEmpleado "
+            + "INNER JOIN Entrenador  "
+            + "ON Entrenador.idEntrenador = Persona.idPersona;";
     @Override
     public boolean create(Entrenador objeto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -142,9 +142,8 @@ public class EntrenadorDAO implements IEntrenadorDAO {
         entrenador.setCuentaBancaria(res.getString(18));
         entrenador.setEstadoLaboral(res.getString(19));
         entrenador.setEspecialidad(res.getString(20));
-        entrenador.setHorario(res.getString(21));
-        entrenador.setCantidadMaximaClientes(res.getInt(22));
-        entrenador.setCantidadClientesDisponibles(res.getInt(23));
+        entrenador.setCantidadMaximaClientes(res.getInt(21));
+        entrenador.setCantidadClientesDisponibles(res.getInt(22));
         
         return entrenador;
     }

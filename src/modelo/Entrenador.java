@@ -13,13 +13,13 @@ import java.util.Date;
  */
 public class Entrenador extends Empleado {
     private String especialidad;
-    private String horario;
+
     private int cantidadMaximaClientes;
     private int cantidadClientesDisponibles;
-    
+
     public Entrenador() {
-        
     }
+
     /**
      * @return the cantidadMaximaClientes
      */
@@ -60,19 +60,5 @@ public class Entrenador extends Empleado {
      */
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
-    }
-
-    /**
-     * @return the horario
-     */
-    public String getHorario() {
-        return horario;
-    }
-
-    /**
-     * @param horario the horario to set
-     */
-    public void setHorario(String horario) {
-        this.horario = horario;
     }
 }

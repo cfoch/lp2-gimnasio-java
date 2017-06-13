@@ -24,7 +24,7 @@ public class TurnoDAO implements ITurnoDAO {
     private static final DBConexion cn = DBConexion.getInstancia();
     private static final String SQL_READ =
             "SELECT idTurno, descripcion, nombreTurno "
-            + "FROM turno "
+            + "FROM Turno "
             + "WHERE idTurno = ?";
 
     @Override
