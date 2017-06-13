@@ -23,7 +23,7 @@ public class Entrenador extends Empleado {
     /**
      * @return the cantidadMaximaClientes
      */
-    public int getCantidadMaximaClientes() {
+    public Integer getCantidadMaximaClientes() {
         return cantidadMaximaClientes;
     }
 
@@ -37,7 +37,7 @@ public class Entrenador extends Empleado {
     /**
      * @return the cantidadClientesDisponibles
      */
-    public int getCantidadClientesDisponibles() {
+    public Integer getCantidadClientesDisponibles() {
         return cantidadClientesDisponibles;
     }
 

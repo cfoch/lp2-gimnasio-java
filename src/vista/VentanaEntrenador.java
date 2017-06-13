@@ -4,33 +4,37 @@
  * and open the template in the editor.
  */
 package vista;
+
 import controlador.EntrenadorControlador;
+import controlador.EntrenadorPerfilControlador;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import vista.interfaces.IVista;
-import javax.swing.table.DefaultTableModel;
+import modelo.Entrenador;
+
 
 /**
  *
- * @author pseudocfoch
+ * @author Lin
  */
-public class VentanaEntrenador extends javax.swing.JInternalFrame implements IVista {
-    public static final class Action {
-        public static final String REFRESCAR_BUTTON_CLICKED = "refrescar_button_clicked";
-    }
-    
-    DefaultTableModel modelo;
-    EntrenadorControlador controlador;
-    
+public class VentanaEntrenador extends javax.swing.JFrame implements IVista {
+    private EntrenadorControlador controlador;
     /**
-     * Creates new form VentanaEntrenador
+     * Creates new form ventanaEntrenadores
      */
     public VentanaEntrenador() {
         initComponents();
-        String cabecera[] = {"DNI", "Nombre", "Apellido paterno",
-            "Apellido Materno", "Sueldo"};
-        String datos[][] = {};
-        modelo = new DefaultTableModel(datos, cabecera);
-        this.entrenadorTable.setModel(modelo);
+        this.setLocationRelativeTo(null);
+    }
+    
+    public Image getIconImage(){
+	Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icon.png"));
+        return retValue;
     }
 
     /**
@@ -42,84 +46,376 @@ public class VentanaEntrenador extends javax.swing.JInternalFrame implements IVi
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        entrenadorTable = new javax.swing.JTable();
-        refrescarButton = new javax.swing.JButton();
+        panelMenu = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnVerPerfil = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldNombreEntrenador = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnAddClase = new javax.swing.JButton();
+        btnClases = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnSalir = new javax.swing.JButton();
+        panelContent = new javax.swing.JPanel();
 
-        setTitle("Entrenadores");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(91, 81, 81));
+        setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
+        setIconImage(getIconImage());
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        entrenadorTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        panelMenu.setBackground(new java.awt.Color(57, 174, 169));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(229, 239, 193));
+        jLabel1.setText("GIMNASIO");
+
+        btnVerPerfil.setBackground(new java.awt.Color(57, 174, 169));
+        btnVerPerfil.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVerPerfil.setForeground(new java.awt.Color(229, 239, 193));
+        btnVerPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/icons/profile.png"))); // NOI18N
+        btnVerPerfil.setText("Perfil");
+        btnVerPerfil.setContentAreaFilled(false);
+        btnVerPerfil.setIconTextGap(20);
+        btnVerPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerPerfilMouseClicked(evt);
             }
-        ));
-        jScrollPane1.setViewportView(entrenadorTable);
-
-        refrescarButton.setText("Refrescar");
-        refrescarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVerPerfilMousePressed(evt);
+            }
+        });
+        btnVerPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refrescarButtonActionPerformed(evt);
+                btnVerPerfilActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(refrescarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(229, 239, 193));
+        jLabel2.setText("Entrenador");
+
+        jTextFieldNombreEntrenador.setEditable(false);
+        jTextFieldNombreEntrenador.setBackground(new java.awt.Color(57, 174, 169));
+        jTextFieldNombreEntrenador.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldNombreEntrenador.setForeground(new java.awt.Color(91, 81, 81));
+        jTextFieldNombreEntrenador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldNombreEntrenador.setText("Nombre del Entrenador");
+
+        jSeparator1.setBackground(new java.awt.Color(229, 239, 193));
+        jSeparator1.setForeground(new java.awt.Color(229, 239, 193));
+        jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        btnAddClase.setBackground(new java.awt.Color(57, 174, 169));
+        btnAddClase.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddClase.setForeground(new java.awt.Color(229, 239, 193));
+        btnAddClase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/icons/plus(1).png"))); // NOI18N
+        btnAddClase.setText("Añadir Clase");
+        btnAddClase.setAlignmentY(0.0F);
+        btnAddClase.setContentAreaFilled(false);
+        btnAddClase.setIconTextGap(20);
+        btnAddClase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddClaseMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAddClaseMousePressed(evt);
+            }
+        });
+        btnAddClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddClaseActionPerformed(evt);
+            }
+        });
+
+        btnClases.setBackground(new java.awt.Color(57, 174, 169));
+        btnClases.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnClases.setForeground(new java.awt.Color(229, 239, 193));
+        btnClases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/icons/cancel.png"))); // NOI18N
+        btnClases.setText("Clase Dictadas");
+        btnClases.setAlignmentY(0.0F);
+        btnClases.setContentAreaFilled(false);
+        btnClases.setIconTextGap(20);
+        btnClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClasesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnClasesMousePressed(evt);
+            }
+        });
+        btnClases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClasesActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(32, 101, 98));
+
+        btnSalir.setBackground(new java.awt.Color(32, 101, 98));
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(162, 213, 171));
+        btnSalir.setText("Salir");
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
+        panelMenu.setLayout(panelMenuLayout);
+        panelMenuLayout.setHorizontalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnVerPerfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAddClase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnClases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMenuLayout.createSequentialGroup()
+                        .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelMenuLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel1))
+                            .addGroup(panelMenuLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelMenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombreEntrenador, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(jSeparator1))))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(refrescarButton)
-                .addContainerGap())
+        panelMenuLayout.setVerticalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnVerPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddClase, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClases, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 490));
+
+        panelContent.setBackground(new java.awt.Color(85, 123, 131));
+
+        javax.swing.GroupLayout panelContentLayout = new javax.swing.GroupLayout(panelContent);
+        panelContent.setLayout(panelContentLayout);
+        panelContentLayout.setHorizontalGroup(
+            panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 610, Short.MAX_VALUE)
+        );
+        panelContentLayout.setVerticalGroup(
+            panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(panelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 610, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refrescarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrescarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refrescarButtonActionPerformed
+    private void btnVerPerfilMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerPerfilMousePressed
+        
+    }//GEN-LAST:event_btnVerPerfilMousePressed
 
+    private void btnVerPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPerfilActionPerformed
+        EntrenadorPerfilControlador controlador;
+        
+        
+        setbtnColor(btnVerPerfil);
+        resetbtnColor(btnAddClase);
+        resetbtnColor(btnClases);
+        btnVerPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/icons/profile(1).png"))); 
+        resetIcon(btnAddClase, "/vista/icons/plus(1).png");
+        resetIcon(btnClases, "/vista/icons/cancel.png");
+        
+
+        
+        Ventrenador_perfil entPerf = new Ventrenador_perfil();
+        controlador = new EntrenadorPerfilControlador(
+                this.controlador.getEntrenador(), entPerf);
+        entPerf.agregarControlador(controlador);
+        
+        entPerf.setSize(610, 490); 
+        entPerf.setLocation(0, 0); 
+
+        panelContent.removeAll();
+        panelContent.add(entPerf, BorderLayout.CENTER);
+        panelContent.revalidate();
+        panelContent.repaint();
+    }//GEN-LAST:event_btnVerPerfilActionPerformed
+
+    private void btnVerPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerPerfilMouseClicked
+        
+    }//GEN-LAST:event_btnVerPerfilMouseClicked
+
+    private void btnAddClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddClaseMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddClaseMouseClicked
+
+    private void btnAddClaseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddClaseMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddClaseMousePressed
+
+    private void btnAddClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClaseActionPerformed
+        setbtnColor(btnAddClase);
+        resetbtnColor(btnVerPerfil);
+        resetbtnColor(btnClases);
+        btnAddClase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/icons/plus.png"))); 
+        resetIcon(btnVerPerfil, "/vista/icons/profile.png");
+        resetIcon(btnClases, "/vista/icons/cancel.png");
+        
+        Ventrenador_addClase ventAddClase = new Ventrenador_addClase();
+        ventAddClase.setSize(610, 490); 
+        ventAddClase.setLocation(0, 0); 
+
+        panelContent.removeAll();
+        panelContent.add(ventAddClase, BorderLayout.CENTER);
+        panelContent.revalidate();
+        panelContent.repaint();
+    }//GEN-LAST:event_btnAddClaseActionPerformed
+
+    private void btnClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClasesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClasesMouseClicked
+
+    private void btnClasesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClasesMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClasesMousePressed
+
+    private void btnClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasesActionPerformed
+        setbtnColor(btnClases);
+        resetbtnColor(btnVerPerfil);
+        resetbtnColor(btnAddClase);
+        btnClases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/icons/cancel(1).png"))); 
+        resetIcon(btnVerPerfil, "/vista/icons/profile.png");
+        resetIcon(btnAddClase, "/vista/icons/plus(1).png");
+        
+        Ventrenador_cancelarClase ventCancClase = new Ventrenador_cancelarClase();
+        ventCancClase.setSize(610, 490); 
+        ventCancClase.setLocation(0, 0); 
+
+        panelContent.removeAll();
+        panelContent.add(ventCancClase, BorderLayout.CENTER);
+        panelContent.revalidate();
+        panelContent.repaint();
+        
+    }//GEN-LAST:event_btnClasesActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    
+    public void setbtnColor(JButton btn){
+        btn.setContentAreaFilled(true);
+        btn.setForeground(new Color(57,174,169));
+        btn.setBackground(new Color(229,239,193));
+    }
+    
+    public void resetbtnColor(JButton btn){
+        btn.setContentAreaFilled(false);
+        btn.setForeground(new Color(229,239,193));
+        btn.setBackground(new Color(57,174,169));
+    }
+    
+    public void resetIcon(JButton btn, String url){
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(url))); 
+    }
+    
+    
+    
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows Classic".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaEntrenador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaEntrenador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaEntrenador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaEntrenador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaEntrenador().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable entrenadorTable;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refrescarButton;
+    private javax.swing.JButton btnAddClase;
+    private javax.swing.JButton btnClases;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVerPerfil;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextFieldNombreEntrenador;
+    private javax.swing.JPanel panelContent;
+    private javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
 
+    private void setPerfil(Entrenador entrenador) {
+        entrenador.getNombreAbreviado();
+        this.jTextFieldNombreEntrenador.setText(entrenador.getNombreAbreviado());
+    }
+    
     @Override
     public void agregarControlador(ActionListener controlador) {
         this.controlador = (EntrenadorControlador) controlador;
-        this.refrescarButton.addActionListener(controlador);
-        this.refrescarButton.setActionCommand(Action.REFRESCAR_BUTTON_CLICKED);
+        setPerfil(this.controlador.getEntrenador());
     }
     
-    public void agregarDatos(Object [] datos) {
-        this.modelo.addRow(datos);
-    }
     
-    public void borrar() {
-        int i;
-        for (i = this.modelo.getRowCount() - 1; i >= 0; i--) {
-            this.modelo.removeRow(i);
-        }
-    }
 }

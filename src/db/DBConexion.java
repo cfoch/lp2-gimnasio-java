@@ -19,9 +19,9 @@ public class DBConexion {
     private static DBConexion instancia;
     private Connection conexion;
     private static final String SERVIDOR =
-            "jdbc:mysql://127.0.0.1:3306/gimnasio?useSSL=false";
-    private static final String USUARIO = "root";
-    private static final String PASSWORD = "root";
+            "jdbc:mysql://quilla.lab.inf.pucp.edu.pe:3306/inf282g5";
+    private static final String USUARIO = "inf282g5";
+    private static final String PASSWORD = "qKHifUJIGh94Jh5Q";
     
     private DBConexion() {
         try {
