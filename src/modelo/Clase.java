@@ -46,6 +46,10 @@ public class Clase {
         this.horaFin = horaFin;
         this.clientes = new ArrayList<>();
     }
+
+    public Clase() {
+        
+    }
     
     /**
      * @return the entrenador

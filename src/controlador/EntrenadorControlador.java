@@ -5,9 +5,12 @@
  */
 package controlador;
 
+import dao.EntrenadorDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import modelo.Entrenador;
+import modelo.Persona;
 import vista.VentanaEntrenador;
 
 /**
@@ -15,51 +18,60 @@ import vista.VentanaEntrenador;
  * @author pseudocfoch
  */
 public class EntrenadorControlador implements ActionListener {
+    private ArrayList<Entrenador> entrenadores;
     private VentanaEntrenador vista;
-    private Entrenador entrenador;
+    private Persona persona;
     
-    public EntrenadorControlador(VentanaEntrenador vista, Entrenador entrenador) {
+    public EntrenadorControlador(Persona persona, VentanaEntrenador vista) {
         this.vista = vista;
-        this.entrenador = entrenador;
+        this.persona = persona;
+        this.refrescar();
     }
 
+    public void refrescar() {
+        ArrayList<Entrenador> entrenadores;
+        int i;
+        vista.borrar();
+        entrenadores = getEntrenadores();
+        for (i = 0; i < entrenadores.size(); i++) {
+            Entrenador entrenador;
+            entrenador = entrenadores.get(i);
+            System.out.println(entrenador.getSueldo());
+            Object datos[] = {
+                String.valueOf(entrenador.getDni()),
+                entrenador.getNombre(),
+                entrenador.getApellidoPaterno(),
+                entrenador.getApellidoMaterno(),
+                String.valueOf(entrenador.getSueldo())
+            };
+            this.getVista().agregarDatos(datos);
+        }
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String cmd;        
+        cmd = e.getActionCommand();
+        if (cmd.equals(VentanaEntrenador.Action.REFRESCAR_BUTTON_CLICKED)) {
+            this.refrescar();
+        }
+
+    }
+
+    /**
+     * @return the entrenadores
+     */
+    public ArrayList<Entrenador> getEntrenadores() {
+        EntrenadorDAO dao;
+        dao = new EntrenadorDAO();
+        return dao.readAll();
+    }
+    
     /**
      * @return the vista
      */
     public VentanaEntrenador getVista() {
         return vista;
-    }
-
-    /**
-     * @param vista the vista to set
-     */
-    public void setVista(VentanaEntrenador vista) {
-        this.vista = vista;
-    }
-
-    /**
-     * @return the entrenador
-     */
-    public Entrenador getEntrenador() {
-        return entrenador;
-    }
-
-    /**
-     * @param entrenador the entrenador to set
-     */
-    public void setEntrenador(Entrenador entrenador) {
-        this.entrenador = entrenador;
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public EntrenadorControlador(Entrenador entrenador, VentanaEntrenador vista) {
-        this.vista = vista;
-        this.entrenador = entrenador;
-    }
-
+    }    
     
 }

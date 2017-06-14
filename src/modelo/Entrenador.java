@@ -13,17 +13,17 @@ import java.util.Date;
  */
 public class Entrenador extends Empleado {
     private String especialidad;
-
+   
     private int cantidadMaximaClientes;
     private int cantidadClientesDisponibles;
-
+    
     public Entrenador() {
+        
     }
-
     /**
      * @return the cantidadMaximaClientes
      */
-    public Integer getCantidadMaximaClientes() {
+    public int getCantidadMaximaClientes() {
         return cantidadMaximaClientes;
     }
 
@@ -37,7 +37,7 @@ public class Entrenador extends Empleado {
     /**
      * @return the cantidadClientesDisponibles
      */
-    public Integer getCantidadClientesDisponibles() {
+    public int getCantidadClientesDisponibles() {
         return cantidadClientesDisponibles;
     }
 
@@ -61,4 +61,6 @@ public class Entrenador extends Empleado {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    
 }

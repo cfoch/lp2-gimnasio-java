@@ -137,8 +137,8 @@ public class EntrenadorDAO implements IEntrenadorDAO {
         entrenador.setcargo(res.getString(13));
         entrenador.setSueldo(res.getFloat(14));            
         entrenador.setArea(res.getString(15));
-        entrenador.setHoraInicio(res.getInt(16));
-        entrenador.setHoraFin(res.getInt(17));
+        entrenador.setHoraInicio(res.getDate(16));
+        entrenador.setHoraFin(res.getDate(17));
         entrenador.setCuentaBancaria(res.getString(18));
         entrenador.setEstadoLaboral(res.getString(19));
         entrenador.setEspecialidad(res.getString(20));

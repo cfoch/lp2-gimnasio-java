@@ -6,13 +6,14 @@
 package vista;
 
 import controlador.AutenticacionControlador;
-import controlador.EntrenadorControlador;
+import controlador.PrincipalControlador;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import vista.interfaces.IVista;
 import java.awt.Image;
 import java.awt.Toolkit;
+import modelo.Persona;
 /**
  *
  * @author pseudocfoch
@@ -270,14 +271,8 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
         this.entrarButton.setActionCommand(Action.ENTRAR_CLICKED);
     }
     
-    public Integer getLogin() {
-        Integer login;
-        try {
-            login = Integer.parseInt(this.loginTextField.getText());
-        } catch (NumberFormatException exception) {
-            login = -1;
-        }
-        return login;
+    public String getLogin() {
+        return this.loginTextField.getText();
     }
     
     public String getConstrasena() {
@@ -306,19 +301,29 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         
         if (res == JOptionPane.OK_OPTION) {
-            EntrenadorControlador entrenadorControlador;
- 
+            int jerarquia; 
+            jerarquia = controlador.getPersona().getJerarquia().getId();
+            if(jerarquia == 2){
+                ventanaEntrenadores ventanaPrincipal;
+                ventanaPrincipal = new ventanaEntrenadores();
+                ventanaPrincipal.setVisible(true);
+            }else if(jerarquia == 3){
+                ventanaClientes ventanaPrincipal;
+                ventanaPrincipal = new ventanaClientes();
+                ventanaPrincipal.setVisible(true);
+            }
             //VentanaPrincipal ventanaPrincipal;
-            VentanaEntrenador ventanaPrincipal;
             // TODO
             // Falta un controlador para la ventana principal que reciba como
             // argumento una Persona, asi podemos manejar los permisos de la
             // persona segun su jerarquia
-            ventanaPrincipal = new VentanaEntrenador();
-            entrenadorControlador = new EntrenadorControlador(ventanaPrincipal,
-                    this.controlador.getEntrenador());
-            ventanaPrincipal.agregarControlador(entrenadorControlador);
-            ventanaPrincipal.setVisible(true);
+            PrincipalControlador principalControlador;
+            //ventanaPrincipal = new VentanaPrincipal();
+            
+            //principalControlador = new PrincipalControlador(
+           //        this.controlador.getPersona(), ventanaPrincipal);
+            //ventanaPrincipal.agregarControlador(principalControlador);
+            
             this.setVisible(false);
         }
         // TODO

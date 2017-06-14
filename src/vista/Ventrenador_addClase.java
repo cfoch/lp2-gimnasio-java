@@ -5,6 +5,15 @@
  */
 package vista;
 
+
+import dao.CursoDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import modelo.Clase;
+import modelo.Curso;
+
 /**
  *
  * @author Lin
@@ -14,8 +23,18 @@ public class Ventrenador_addClase extends javax.swing.JPanel {
     /**
      * Creates new form Ventrenador_addClase
      */
+    ArrayList<Curso>listaCursos;
+    CursoDAO cursoDao=new CursoDAO();
     public Ventrenador_addClase() {
         initComponents();
+        /*TableModel modelCursos=tblCursos.getModel();
+        listaCursos=cursoDao.readAll();
+        for(int i=0;i<listaCursos.size();i++){
+            modelCursos.setValueAt(listaCursos.get(i).getId(), i, 0);
+            modelCursos.setValueAt(listaCursos.get(i).getNombre(), i, 1);
+            modelCursos.setValueAt(listaCursos.get(i).getDescripcion(), i, 2);
+        }*/
+        
     }
 
     /**
@@ -72,7 +91,7 @@ public class Ventrenador_addClase extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "ID Curso", "Nombre Curso", "Descripción", "Clases Asignadas"
+                "ID Curso", "Nombre Curso", "Descripción", "Clases Dictadas"
             }
         ));
         tblCursos.setGridColor(new java.awt.Color(162, 213, 171));
@@ -408,6 +427,11 @@ public class Ventrenador_addClase extends javax.swing.JPanel {
         btnAgregarClase.setText("Agregar");
         btnAgregarClase.setBorder(null);
         btnAgregarClase.setBorderPainted(false);
+        btnAgregarClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarClaseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -473,6 +497,26 @@ public class Ventrenador_addClase extends javax.swing.JPanel {
     private void ftfHorIniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ftfHorIniMouseClicked
         ftfHorIni.setText("");
     }//GEN-LAST:event_ftfHorIniMouseClicked
+
+    private void btnAgregarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClaseActionPerformed
+        int i=tblCursos.getSelectedRow(); 
+        SimpleDateFormat Dateformatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat Hourformatter = new SimpleDateFormat("HH:mm:ss");
+        if(i==-1) return;  //no seleciona nada
+        Curso curso=listaCursos.get(i);
+        Clase clase =new Clase();
+        clase.setDescripcion(txtDescClase.getText());
+        clase.setDuracionEnHoras((Integer.parseInt(txtDuracion.getText())));
+        try{
+            clase.setFechaInicio(Dateformatter.parse(ftfFecIni.getText()));
+            clase.setFechaFin(Dateformatter.parse(ftfFecFin.getText()));
+            clase.setHoraInicio(Hourformatter.parse(ftfHorIni.getText()));
+            clase.setHoraInicio(Hourformatter.parse(ftfHorFin.getText()));
+
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAgregarClaseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

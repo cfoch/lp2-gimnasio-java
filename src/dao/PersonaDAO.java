@@ -38,11 +38,10 @@ public class PersonaDAO implements IPersonaDAO {
     private static final String SQL_READ =
             "SELECT * FROM Persona WHERE idPersona = ?";
     private static final String SQL_READ_ALL = "SELECT * FROM Persona";
+    private static final DBConexion cn = DBConexion.getInstancia();
 
     @Override
     public boolean create(Persona objeto) {
-        DBConexion cn;
-        cn = DBConexion.getInstancia();
         try {
             int id;
             ResultSet ids;
@@ -51,13 +50,13 @@ public class PersonaDAO implements IPersonaDAO {
             ps.setInt(1, objeto.getDni());
             ps.setInt(2, objeto.getJerarquia().getId());
             ps.setString(3, objeto.getNombre());
-            ps.setString(4, objeto.getDireccion());
-            ps.setString(5, objeto.getApellidoPaterno());
-            ps.setString(6, objeto.getApellidoMaterno());
-            ps.setString(7, objeto.getEmail());
-            ps.setString(8, objeto.getDistrito());
-            ps.setDate(9, (Date) objeto.getFechaNacimiento());
-            ps.setString(10, objeto.getTelefono());
+            ps.setString(4, objeto.getApellidoPaterno());
+            ps.setString(5, objeto.getApellidoMaterno());
+            ps.setString(6, objeto.getDireccion());
+            ps.setString(7, objeto.getDistrito());
+            ps.setDate(8, (Date) objeto.getFechaNacimiento());
+            ps.setString(9, objeto.getTelefono());
+            ps.setString(10, objeto.getEmail());
             ps.setString(11, objeto.getContrasena());
             if (ps.executeUpdate() > 0)
                 return true;
@@ -72,8 +71,6 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public boolean delete(Integer dni) {
-        DBConexion cn;
-        cn = DBConexion.getInstancia();
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_DELETE);
@@ -92,23 +89,21 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public boolean update(Persona objeto) {
-        DBConexion cn;
-        cn = DBConexion.getInstancia();
         try {
             PreparedStatement ps;
             ps = cn.getConexion().prepareStatement(SQL_UPDATE);
-            ps.setInt(1, objeto.getJerarquia().getId());
-            ps.setString(2, objeto.getNombre());
-            ps.setString(3, objeto.getDireccion());
+            ps.setInt(1, objeto.getDni());
+            ps.setInt(2, objeto.getJerarquia().getId());
+            ps.setString(3, objeto.getNombre());
             ps.setString(4, objeto.getApellidoPaterno());
             ps.setString(5, objeto.getApellidoMaterno());
-            ps.setString(6, objeto.getEmail());
+            ps.setString(6, objeto.getDireccion());
             ps.setString(7, objeto.getDistrito());
             ps.setDate(8, (Date) objeto.getFechaNacimiento());
             ps.setString(9, objeto.getTelefono());
-            ps.setString(10, objeto.getContrasena());
-            
-            ps.setInt(11, objeto.getDni());
+            ps.setString(10, objeto.getEmail());
+            ps.setString(11, objeto.getContrasena());
+
             
             if (ps.executeUpdate() > 0)
                 return true;
@@ -123,8 +118,6 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public Persona read(Integer id) {
-        DBConexion cn;
-        cn = DBConexion.getInstancia();
         Persona persona = null;
         try {
             PreparedStatement ps;
@@ -148,10 +141,10 @@ public class PersonaDAO implements IPersonaDAO {
                 persona.setApellidoPaterno(res.getString(4));
                 persona.setApellidoMaterno(res.getString(5));
                 persona.setDireccion(res.getString(6));
-                persona.setEmail(res.getString(7));
-                persona.setDistrito(res.getString(8));
-                persona.setFechaNacimiento(res.getDate(9));
-                persona.setTelefono(res.getString(10));
+                persona.setDistrito(res.getString(7));
+                persona.setFechaNacimiento(res.getDate(8));
+                persona.setTelefono(res.getString(9));
+                persona.setEmail(res.getString(10));
                 persona.setContrasenaEncriptada(res.getString(11));
             }
         } catch (SQLException ex) {
@@ -163,8 +156,6 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public ArrayList<Persona> readAll() {
-        DBConexion cn;
-        cn = DBConexion.getInstancia();
         ArrayList<Persona> personas;
         personas = new ArrayList<>();
         try {
@@ -189,13 +180,13 @@ public class PersonaDAO implements IPersonaDAO {
                 persona.setDni(res.getInt(1));
                 persona.setJerarquia(jerarquia);
                 persona.setNombre(res.getString(3));
-                persona.setDireccion(res.getString(4));
-                persona.setApellidoPaterno(res.getString(5));
-                persona.setApellidoMaterno(res.getString(6));
-                persona.setEmail(res.getString(7));
-                persona.setDistrito(res.getString(8));
-                persona.setFechaNacimiento(res.getDate(9));
-                persona.setTelefono(res.getString(10));
+                persona.setApellidoPaterno(res.getString(4));
+                persona.setApellidoMaterno(res.getString(5));
+                persona.setDireccion(res.getString(6));
+                persona.setDistrito(res.getString(7));
+                persona.setFechaNacimiento(res.getDate(8));
+                persona.setTelefono(res.getString(9));
+                persona.setEmail(res.getString(10));
                 persona.setContrasenaEncriptada(res.getString(11));
                 personas.add(persona);
             }

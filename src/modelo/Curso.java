@@ -13,6 +13,10 @@ public class Curso {
     private int id;
     private String nombre;
     private String descripcion;
+    
+    public Curso(){
+        
+    }
 
     public Curso(String nombre, String descripcion) {
         this.nombre = nombre;
