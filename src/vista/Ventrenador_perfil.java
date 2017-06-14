@@ -4,18 +4,21 @@
  * and open the template in the editor.
  */
 package vista;
-import controlador.EntrenadorModificarControlador;
+
+
 import controlador.EntrenadorPerfilControlador;
-import vista.interfaces.IVista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import modelo.Entrenador;
+import vista.interfaces.IVista;
+
 /**
  *
  * @author Lin
  */
 public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
+
     private EntrenadorPerfilControlador controlador;
 
     /**
@@ -100,7 +103,7 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
         txtEstLab.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtEstLab.setForeground(new java.awt.Color(162, 213, 171));
         txtEstLab.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtEstLab.setText("XXXXX");
+        txtEstLab.setText("Activo");
         txtEstLab.setBorder(null);
         txtEstLab.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtEstLab.setSelectionColor(new java.awt.Color(162, 213, 171));
@@ -111,7 +114,7 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
         txtSueldo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtSueldo.setForeground(new java.awt.Color(162, 213, 171));
         txtSueldo.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtSueldo.setText("XXXXX");
+        txtSueldo.setText("3000");
         txtSueldo.setBorder(null);
         txtSueldo.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtSueldo.setSelectionColor(new java.awt.Color(162, 213, 171));
@@ -122,7 +125,7 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
         txtTurno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtTurno.setForeground(new java.awt.Color(162, 213, 171));
         txtTurno.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtTurno.setText("XXXXX");
+        txtTurno.setText("Matutino");
         txtTurno.setBorder(null);
         txtTurno.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtTurno.setSelectionColor(new java.awt.Color(162, 213, 171));
@@ -133,7 +136,7 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
         txtClientDisp.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtClientDisp.setForeground(new java.awt.Color(162, 213, 171));
         txtClientDisp.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtClientDisp.setText("XXXXX");
+        txtClientDisp.setText("20");
         txtClientDisp.setBorder(null);
         txtClientDisp.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtClientDisp.setSelectionColor(new java.awt.Color(162, 213, 171));
@@ -144,7 +147,7 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
         txtMaxCli.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtMaxCli.setForeground(new java.awt.Color(162, 213, 171));
         txtMaxCli.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtMaxCli.setText("XXXXX");
+        txtMaxCli.setText("20");
         txtMaxCli.setBorder(null);
         txtMaxCli.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtMaxCli.setSelectionColor(new java.awt.Color(162, 213, 171));
@@ -155,16 +158,11 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
         txtEsp.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtEsp.setForeground(new java.awt.Color(162, 213, 171));
         txtEsp.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtEsp.setText("XXXXX");
+        txtEsp.setText("Levantamiento de Pesas");
         txtEsp.setBorder(null);
         txtEsp.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtEsp.setSelectionColor(new java.awt.Color(162, 213, 171));
-        txtEsp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEspActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+        jPanel1.add(txtEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 123, 131));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Personales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(229, 239, 193))); // NOI18N
@@ -289,15 +287,11 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPerfilActionPerformed
-        EntrenadorModificarControlador controlador;
+        
+
         VentrenadorModPerfil ventModPerfil = new VentrenadorModPerfil();
-        
-        controlador = new EntrenadorModificarControlador(
-                this.controlador.getEntrenador(), ventModPerfil);
-        ventModPerfil.agregarControlador(controlador);
-        
-        ventModPerfil.setSize(610,490); 
-        ventModPerfil.setLocation(0, 0); 
+        ventModPerfil.setSize(610, 490);
+        ventModPerfil.setLocation(0, 0);
 
         panelPerfil.removeAll();
         panelPerfil.add(ventModPerfil, BorderLayout.CENTER);
@@ -306,16 +300,12 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
     }//GEN-LAST:event_btnModPerfilActionPerformed
 
     private void btnModPerfilMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModPerfilMousePressed
-        btnModPerfil.setForeground(new Color(162,213,171));
+        btnModPerfil.setForeground(new Color(162, 213, 171));
     }//GEN-LAST:event_btnModPerfilMousePressed
 
     private void btnModPerfilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModPerfilMouseReleased
-        btnModPerfil.setForeground(new Color(229,239,193));
+        btnModPerfil.setForeground(new Color(229, 239, 193));
     }//GEN-LAST:event_btnModPerfilMouseReleased
-
-    private void txtEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEspActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -347,22 +337,23 @@ public class Ventrenador_perfil extends javax.swing.JPanel implements IVista {
     private javax.swing.JTextField txtTurno;
     // End of variables declaration//GEN-END:variables
 
-    public void setPerfil(Entrenador entrenador) {        
-        this.txtDNI.setText(entrenador.getDni().toString());
+    public void setPerfil(Entrenador entrenador) {
+        this.txtDNI.setText(Integer.toString(entrenador.getDni()));
         this.txtCuentaBancaria.setText(entrenador.getCuentaBancaria());
         this.txtEmail.setText(entrenador.getEmail());
         this.txtEsp.setText(entrenador.getEspecialidad());
         this.txtEstLab.setText(entrenador.getEstadoLaboral());
-        this.txtMaxCli.setText(entrenador.getCantidadMaximaClientes().toString());
+        this.txtMaxCli.setText(Integer.toString(entrenador.getCantidadMaximaClientes()));
         this.txtNomb.setText(entrenador.getNombre());
-        this.txtSueldo.setText(entrenador.getSueldo().toString());
+        this.txtSueldo.setText(Double.toString(entrenador.getSueldo()));
         this.txtTel.setText(entrenador.getTelefono());
         this.txtTurno.setText(entrenador.getTurno().getNombreTurno());
     }
-    
+
     @Override
     public void agregarControlador(ActionListener controlador) {
         this.controlador = (EntrenadorPerfilControlador) controlador;
         setPerfil(this.controlador.getEntrenador());
     }
+
 }

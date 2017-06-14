@@ -14,4 +14,5 @@ import modelo.Entrenador;
  * @author pseudocfoch
  */
 public interface IEntrenadorDAO extends IDAO<Entrenador, Integer> {
+    
 }

@@ -53,6 +53,6 @@ public class DBConexion {
             Logger.getLogger(DBConexion.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
-        this.instancia = null;
+        this.conexion = null;
     }
 }

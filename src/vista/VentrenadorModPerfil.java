@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.EntrenadorModificarControlador;
+//import controlador.EntrenadorModificarControlador;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -17,17 +17,16 @@ import vista.interfaces.IVista;
  *
  * @author Lin
  */
-public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
-    EntrenadorModificarControlador controlador;
-    public static final class Action {
-        public static final String MODIFICAR_CLICKED = "modificar_clicked";
-    }
+public class VentrenadorModPerfil extends javax.swing.JPanel /*implements IVista*/{
+
     
+
     /**
      * Creates new form VentrenadorModPerfil
      */
     public VentrenadorModPerfil() {
         initComponents();
+
     }
 
     /**
@@ -97,6 +96,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtApMat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtApMat.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtApMat.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtApMat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtApMatMouseClicked(evt);
+            }
+        });
 
         txtFecNac.setBackground(new java.awt.Color(229, 239, 193));
         txtFecNac.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -105,6 +109,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtFecNac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtFecNac.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtFecNac.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtFecNac.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFecNacMouseClicked(evt);
+            }
+        });
 
         txtNomb.setBackground(new java.awt.Color(229, 239, 193));
         txtNomb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -113,6 +122,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtNomb.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtNomb.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtNomb.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtNomb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombMouseClicked(evt);
+            }
+        });
 
         txtApPat.setBackground(new java.awt.Color(229, 239, 193));
         txtApPat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -121,6 +135,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtApPat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtApPat.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtApPat.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtApPat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtApPatMouseClicked(evt);
+            }
+        });
 
         txtDNI.setEditable(false);
         txtDNI.setBackground(new java.awt.Color(85, 123, 131));
@@ -138,6 +157,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtDir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtDir.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtDir.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtDir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDirMouseClicked(evt);
+            }
+        });
 
         txtDistrito.setBackground(new java.awt.Color(229, 239, 193));
         txtDistrito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -146,6 +170,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtDistrito.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtDistrito.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtDistrito.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtDistrito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDistritoMouseClicked(evt);
+            }
+        });
 
         jLabel10.setForeground(new java.awt.Color(229, 239, 193));
         jLabel10.setText("Dirección: ");
@@ -166,6 +195,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtTel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtTel.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtTel.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtTel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTelMouseClicked(evt);
+            }
+        });
 
         txtEmail.setBackground(new java.awt.Color(229, 239, 193));
         txtEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -174,6 +208,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         txtEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(57, 174, 169)));
         txtEmail.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         txtEmail.setSelectionColor(new java.awt.Color(57, 174, 169));
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
 
         jLabel14.setForeground(new java.awt.Color(229, 239, 193));
         jLabel14.setText("Contraseña:  ");
@@ -187,6 +226,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         pswContrasena.setText("jPasswordField1");
         pswContrasena.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         pswContrasena.setSelectionColor(new java.awt.Color(57, 174, 169));
+        pswContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pswContrasenaMouseClicked(evt);
+            }
+        });
 
         pswConfContrasena.setBackground(new java.awt.Color(229, 239, 193));
         pswConfContrasena.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -194,6 +238,11 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         pswConfContrasena.setText("jPasswordField1");
         pswConfContrasena.setSelectedTextColor(new java.awt.Color(253, 255, 246));
         pswConfContrasena.setSelectionColor(new java.awt.Color(57, 174, 169));
+        pswConfContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pswConfContrasenaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -321,20 +370,57 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 490));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNombMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombMouseClicked
+        txtNomb.setText("");
+    }//GEN-LAST:event_txtNombMouseClicked
+
+    private void txtApPatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApPatMouseClicked
+        txtApPat.setText("");
+    }//GEN-LAST:event_txtApPatMouseClicked
+
+    private void txtApMatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApMatMouseClicked
+        txtApMat.setText("");
+    }//GEN-LAST:event_txtApMatMouseClicked
+
+    private void txtFecNacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFecNacMouseClicked
+        txtFecNac.setText("");
+    }//GEN-LAST:event_txtFecNacMouseClicked
+
+    private void txtDirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDirMouseClicked
+        txtDir.setText("");
+    }//GEN-LAST:event_txtDirMouseClicked
+
+    private void txtDistritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDistritoMouseClicked
+        txtDistrito.setText("");
+    }//GEN-LAST:event_txtDistritoMouseClicked
+
+    private void txtTelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelMouseClicked
+        txtTel.setText("");
+    }//GEN-LAST:event_txtTelMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        txtEmail.setText("");
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void pswContrasenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pswContrasenaMouseClicked
+        pswContrasena.setText("");
+    }//GEN-LAST:event_pswContrasenaMouseClicked
+
+    private void pswConfContrasenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pswConfContrasenaMouseClicked
+        pswConfContrasena.setText("");
+    }//GEN-LAST:event_pswConfContrasenaMouseClicked
+
     private void btnModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPerfilActionPerformed
-        Action action;
         
-        /*
+        
         Ventrenador_perfil ventPerfil = new Ventrenador_perfil();
-        ventPerfil.setSize(610,490); 
-        ventPerfil.setLocation(0, 0); 
+        ventPerfil.setSize(610, 490);
+        ventPerfil.setLocation(0, 0);
 
         panelFondo.removeAll();
         panelFondo.add(ventPerfil, BorderLayout.CENTER);
         panelFondo.revalidate();
         panelFondo.repaint();
-        */
-
     }//GEN-LAST:event_btnModPerfilActionPerformed
 
 
@@ -366,11 +452,10 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
     private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
 
-    
     private void setPerfil(Entrenador entrenador) {
         this.txtApMat.setText(entrenador.getApellidoMaterno());
         this.txtApPat.setText(entrenador.getApellidoPaterno());
-        this.txtDNI.setText((entrenador.getDni().toString()));
+        this.txtDNI.setText((Integer.toString(entrenador.getDni())));
         this.txtDir.setText(entrenador.getDireccion());
         this.txtDistrito.setText((entrenador.getDistrito()));
         this.txtEmail.setText(entrenador.getEmail());
@@ -388,7 +473,7 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
             "Upps! Hubo un problema.", JOptionPane.ERROR_MESSAGE);
     }
     
-    public boolean actualizarEntrenador(Entrenador entrenador) {
+    /*public boolean actualizarEntrenador(Entrenador entrenador) {
         String contrasena, contrasenaConfirmada;
         Entrenador e;
         JFrame frame;
@@ -425,5 +510,6 @@ public class VentrenadorModPerfil extends javax.swing.JPanel implements IVista {
         setPerfil(this.controlador.getEntrenador());
         this.btnModPerfil.addActionListener(controlador);
         this.btnModPerfil.setActionCommand(Action.MODIFICAR_CLICKED);
-    }
+    }*/
+
 }
