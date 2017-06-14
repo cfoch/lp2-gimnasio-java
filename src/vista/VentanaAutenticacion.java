@@ -7,7 +7,6 @@ package vista;
 
 import controlador.AutenticacionControlador;
 import controlador.EntrenadorControlador;
-import controlador.PrincipalControlador;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -315,7 +314,6 @@ public class VentanaAutenticacion extends javax.swing.JFrame implements IVista {
             // Falta un controlador para la ventana principal que reciba como
             // argumento una Persona, asi podemos manejar los permisos de la
             // persona segun su jerarquia
-            PrincipalControlador principalControlador;
             ventanaPrincipal = new VentanaEntrenador();
             entrenadorControlador = new EntrenadorControlador(ventanaPrincipal,
                     this.controlador.getEntrenador());

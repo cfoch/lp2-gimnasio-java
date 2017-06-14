@@ -13,7 +13,6 @@ import modelo.Entrenador;
 import modelo.Jerarquia;
 import modelo.Persona;
 import vista.VentanaAutenticacion;
-import vista.VentanaPrincipal;
 
 /**
  *
